@@ -15,7 +15,14 @@ def max_2_sum arr
   # YOUR CODE HERE
 	arr.sort!
 	len = arr.length
+	if len == 1 
+	  return arr[0];
+	elsif len == 0
+	  return 0
+	end
+	 
 	sum = arr[len-1] + arr[len-2]
+	
 end
 
 #puts max_2_sum [34,3,3,3,66,99,1]
@@ -56,17 +63,17 @@ end
 def starts_with_consonant? s
   # YOUR CODE HERE
   s.downcase!
-  !s.start_with? "a","e","i","o","u"
+  s.start_with? "b","c","d","f","g","h","j","l","m","n","p","q","r","s","t","v","w","x","y","z"
 end
 
 #puts starts_with_consonant? "pYO"
 
 def binary_multiple_of_4? s
   bin = s.to_i(2)
-  check = bin.to_s(2)
-  
+  num = s.count "10"
+
   #string error check
-  if check == s
+  if (num == s.length) && num > 0
     #modulo check
     if bin % 4 == 0
       return true
@@ -76,30 +83,32 @@ def binary_multiple_of_4? s
   return false
 end
 
-#puts binary_multiple_of_4? "1110"
+#puts binary_multiple_of_4? "01100"
 # Part 3  ########################################################################
 class BookInStock
   
-   def initialize(isbn_number, price)  
+   def initialize(isbn, price)  
     # Instance variables  
-    @isbn_number = isbn_number
+    @isbn = isbn
     @price = price
     
-    if @price < 0 
+    if @price <= 0 
+      raise ArgumentError 
       puts "price error"
     end
     
-    if  @isbn_number.length < 1
+    if  @isbn.length < 1
+      raise ArgumentError 
       puts "ISBN error"
     end
   end 
   
   attr_accessor :price
-  attr_accessor :isbn_number
+  attr_accessor :isbn
   
   def price_as_string 
 
-    return "£%0.2f" % [price.to_s]
+    return "$%0.2f" % [price.to_s]
    
 
   end
